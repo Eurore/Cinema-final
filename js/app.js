@@ -21,45 +21,41 @@ const cinema = Vue.reactive({
 	 *	if no date is provided, the API endpoint will return the movies for today
 	*/
 	getMoviesByDate(date) {
-		if(typeof date == "undefined") date = "";
-		
+		if (typeof date == "undefined") date = "";
+
 		fetch(`${apiBaseUrl}/event/list/?date=${date}`, {
 			mode: "no-cors"
 		})
-		.then(response => response.json())
-		.then(function(data){
-			console.log("movies fetched", data)
-			cinema.movies = data;
-		}.bind(cinema));
+			.then(response => response.json())
+			.then(function (data) {
+				cinema.movies = data;
+			}.bind(cinema));
 	},
 
 	/**
 	 * Returns an array of the already reserved seats of a movie event in format: [36, 34, 35, 23]
 	 */
-	getUnavailableSeats(){
-		var postDatetime = cinema.movie.date.replaceAll(",","");
+	getUnavailableSeats() {
+		var postDatetime = cinema.movie.date.replaceAll(",", "");
 		fetch(`${apiBaseUrl}/event/reserved-seats/?movie_id=${cinema.movie.id}&datetime=${postDatetime}`, {
 			mode: "no-cors"
 		})
-		.then(response => response.json())
-		.then(function(data){
-			console.log("occupied seats fetched", data, data.reserved_seats)
-			cinema.selectedEventUnavailableSeats = data.reserved_seats;
-		}.bind(cinema));
+			.then(response => response.json())
+			.then(function (data) {
+				cinema.selectedEventUnavailableSeats = data.reserved_seats;
+			}.bind(cinema));
 	},
 
-	saveReservationDB(reservationNumber, movieData){
-		var postDatetime = movieData.datetimeFull.replaceAll(",","");
+	saveReservationDB(reservationNumber, movieData) {
+		var postDatetime = movieData.datetimeFull.replaceAll(",", "");
 		var postTickets = JSON.stringify(movieData.tickets);
-		console.log(reservationNumber, movieData);
 		fetch(`${apiBaseUrl}/reservation/create/?email=${cinema.auth.email}&movie_id=${movieData.id}&datetime=${postDatetime}&reservation_number=${reservationNumber}&seats=${movieData.seats}&price=${movieData.total}&tickets=${postTickets}`, {
 			mode: "no-cors"
 		})
-		.then(response => response.json())
-		.then(function(data){
-			console.log("save reservation db", data);
-			cinema.paypalLink = data.payment_link;
-		}.bind(cinema));
+			.then(response => response.json())
+			.then(function (data) {
+ 				cinema.paypalLink = data.payment_link;
+			}.bind(cinema));
 	},
 
 	/**
@@ -85,11 +81,10 @@ const cinema = Vue.reactive({
 		return generateWeek.map((item) => {
 			return {
 				dayName: new Date(item).toLocaleDateString("BG", { weekday: "long" }),
-				dayMonth: `${new Date(item).getDate()}${
-					new Date(item).getMonth() + 1 < 10
-						? `.0${new Date(item).getMonth() + 1}`
-						: new Date(item).getMonth() + 1
-				}`,
+				dayMonth: `${new Date(item).getDate()}${new Date(item).getMonth() + 1 < 10
+					? `.0${new Date(item).getMonth() + 1}`
+					: new Date(item).getMonth() + 1
+					}`,
 				fullDate: `${new Date(item).getFullYear()}-${new Date(item).getMonth() + 1}-${new Date(
 					item
 				).getDate()}`,
