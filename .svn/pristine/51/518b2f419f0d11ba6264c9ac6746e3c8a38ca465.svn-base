@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Cinema Land Varna</title>
+
+	<!-- Render Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poiret+One&display=swap"
+		rel="stylesheet" />
+
+	<!-- Render Custom Styles -->
+	<link rel="stylesheet" href="./style/style.css" />
+	<link rel="stylesheet" href="./style/paypal-buttons.css" />
+
+	<!-- Render Vue3, Vue-Router and Magic Libraries via CDN -->
+	<script src="https://unpkg.com/vue@3"></script>
+	<script src="https://unpkg.com/vue-router@4"></script>
+	<script src="https://auth.magic.link/sdk"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+</head>
+
+<body>
+	<div id="app" v-cloak>
+		<header>
+			<nav>
+				<router-link to="/">Начало</router-link>
+				<router-link to="/about">За нас</router-link>
+
+				<router-link to="/" class="logo">
+					<img src="https://media.istockphoto.com/vectors/cinema-night-neon-sign-vector-id1169104240?k=20&m=1169104240&s=170667a&w=0&h=TC_df4V_wSyaKasVYXsIjoHXklQdxAGALZ-l364Udlw="
+						alt="Site Logo" />
+				</router-link>
+				<router-link to="/login">
+					<div class="user">
+						<svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg">
+							<title />
+							<g data-name="1" id="_1">
+								<path
+									d="M27,3V29a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V27H7v1H25V4H7V7H5V3A1,1,0,0,1,6,2H26A1,1,0,0,1,27,3ZM12.29,20.29l1.42,1.42,5-5a1,1,0,0,0,0-1.42l-5-5-1.42,1.42L15.59,15H5v2H15.59Z"
+									id="login_account_enter_door" />
+							</g>
+						</svg>
+					</div>
+				</router-link>
+			</nav>
+		</header>
+		<main>
+			<router-view></router-view>
+		</main>
+	</div>
+
+	<!-- Render Movies -->
+	<script src="./data/moviesDB.js"></script>
+	<script src="./data/ticketsDB.js"></script>
+
+	<!-- Render Component Files  -->
+	<script src="./components/About.js"></script>
+	<script src="./components/Movies.js"></script>
+	<script src="./components/Login.js"></script>
+	<script src="./components/Account.js"></script>
+	<script src="./components/Tickets.js"></script>
+	<script src="./components/Seats.js"></script>
+	<script src="./components/Complete.js"></script>
+
+	<!-- Render Custom Javascript Files -->
+	<script src="./js/localStorage.js"></script>
+	<script src="./js/router.js"></script>
+	<script src="./js/magic.js"></script>
+	<script src="./js/app.js"></script>
+</body>
+
+</html>

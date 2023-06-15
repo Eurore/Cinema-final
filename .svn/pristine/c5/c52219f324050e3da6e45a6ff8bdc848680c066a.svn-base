@@ -1,0 +1,66 @@
+const Complete = {
+	name: "complete",
+	components: {
+		Movie,
+	},
+	template: `
+        <div class='complete'>
+            <h1> Успешна резервация </h1>
+			<h2>Благодарим ви, че резервирахте билет!</h2>
+            <div class="qrcode">
+                <h3> Код на резервация</h3> 
+                <canvas id="qr"></canvas>
+                {{ cinema.movie.reservationNumber }}
+            </div>
+            <strong>Тотал: {{ parseFloat(cinema.movie.total).toFixed(2) }}лв.</strong>
+            <div class='info'>
+                <p>Прожекция: <strong>{{ movieData.name }}</strong></p>
+                <p>Дата: <strong>{{ movieData.date }}</strong></p>
+                <p>Час: <strong>{{ movieData.time }}</strong></p>
+                <div class='tickets' v-if="movieData.tickets?.length">
+					<h3>Билети:</h3>
+					<span :key="idx" v-for="(ticket, idx) in movieData.tickets">
+						{{ Object.keys(ticket)[0] }} : {{ Object.values(ticket)[0] }}
+					</span>
+                </div>
+				<div class='seat-numbers' v-if="movieData.seats?.length">
+					<h3>Места:</h3>
+					<span> {{ movieData.seats.join(', ') }}</span>
+				</div>
+            </div>
+        
+        </div>
+		 `,
+	setup() {
+		const generateUniqueNumber = () => Math.floor(Math.random() * Date.now());
+		!cinema.movie.reservationNumber && storeLastReservationNumberToLocalStorage(generateUniqueNumber());
+		Vue.onMounted(() => {
+			new QRious({
+				element: document.getElementById("qr"),
+				value: cinema.movie.reservationNumber,
+				level: "H", // Error correction level of the QR code (L, M, Q, H)
+				mime: "image/png", // MIME type used to render the image for the QR code
+				size: 200,
+			});
+		});
+		const foundMovieInDB = cinema.movies.find((movie) => movie.id === cinema?.movie?.id);
+		const movieData = {
+			id: foundMovieInDB.id,
+			name: foundMovieInDB.title,
+			datetimeFull: cinema.movie.date,
+			date: new Date(cinema.movie.date?.split(",")?.shift()).toLocaleDateString(),
+			time: cinema.movie?.date?.split(",")?.pop().trim(),
+			tickets: cinema.movie?.tickets?.typeOfTicket,
+			seats: cinema.movie?.seats,
+			total: parseFloat(cinema.movie.total).toFixed(2)
+		};
+		
+		cinema.saveReservationDB(cinema.movie.reservationNumber, movieData);
+
+		return {
+			generateUniqueNumber,
+			movieData,
+			cinema,
+		};
+	},
+};
