@@ -724,6 +724,14 @@ main .about iframe {
   gap: 2rem;
 }
 
+.trailer-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
 
 .trailer-overlay button {
   position: fixed;
@@ -771,7 +779,7 @@ main .about iframe {
 }
 
 .actors {
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
