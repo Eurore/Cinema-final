@@ -750,7 +750,7 @@ main .about iframe {
   transition: all 1s ease;
   overflow: hidden;
   left: 100%;
- }
+}
 
 .trailer.active {
   left: 0;
@@ -779,8 +779,7 @@ main .about iframe {
 }
 
 .actors {
-  margin-top: 1rem;
-  padding: 1rem;
+  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
