@@ -75,20 +75,20 @@ const Movie = {
 		Timespan,
 	},
 	template: `
-            <img 
-                loading='lazy' 
-                class='movie-image' 
-                :src='props.movie.image' 
-                :alt='props.movie.title' 
+            <img
+                loading='lazy'
+                class='movie-image'
+                :src='props.movie.image'
+                :alt='props.movie.title'
                 width="150"
-                height="200" 
+                height="200"
                 v-if='props.movie.image.length'
             />
             <div class='badge' v-if="props.movie.type">{{ props.movie.type }}</div>
             <div class='movie-content'>
                 <h2>{{ props.movie.title }}</h2>
                 <p v-if="props.movie.timeStamps">Купи билет</p>
-                <timespan :id='props.movie.id' :timeStamps="props.movie.timeStamps" v-if="props.movie.timeStamps"/> 
+                <timespan :id='props.movie.id' :timeStamps="props.movie.timeStamps" v-if="props.movie.timeStamps"/>
                 <em v-if="props.movie.info">{{ props.movie?.info }}</em>
 				<div class='account-page-data' v-if="props.movie.date">
 					<p v-if="props.movie.reservationNumber">Номер: {{ props.movie.reservationNumber }}</p>
