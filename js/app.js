@@ -1,12 +1,11 @@
 const apiBaseUrl = "https://cinema.smart-bot.shop";
 
 const cinema = Vue.reactive({
-	movies: [],//moviesDB,
+	movies: [],
 	movie: {
 		id: null,
 		date: null,
 		tickets: null,
-		//occupiedSeats: null,
 		seats: null,
 		total: null,
 		reservationNumber: null,
@@ -23,9 +22,7 @@ const cinema = Vue.reactive({
 	getMoviesByDate(date) {
 		if (typeof date == "undefined") date = "";
 
-		fetch(`${apiBaseUrl}/event/list/?date=${date}`, {
-			mode: "no-cors"
-		})
+		fetch(`${apiBaseUrl}/event/list/?date=${date}`)
 			.then(response => response.json())
 			.then(function (data) {
 				cinema.movies = data;
@@ -37,9 +34,7 @@ const cinema = Vue.reactive({
 	 */
 	getUnavailableSeats() {
 		var postDatetime = cinema.movie.date.replaceAll(",", "");
-		fetch(`${apiBaseUrl}/event/reserved-seats/?movie_id=${cinema.movie.id}&datetime=${postDatetime}`, {
-			mode: "no-cors"
-		})
+		fetch(`${apiBaseUrl}/event/reserved-seats/?movie_id=${cinema.movie.id}&datetime=${postDatetime}`)
 			.then(response => response.json())
 			.then(function (data) {
 				cinema.selectedEventUnavailableSeats = data.reserved_seats;
@@ -49,9 +44,7 @@ const cinema = Vue.reactive({
 	saveReservationDB(reservationNumber, movieData) {
 		var postDatetime = movieData.datetimeFull.replaceAll(",", "");
 		var postTickets = JSON.stringify(movieData.tickets);
-		fetch(`${apiBaseUrl}/reservation/create/?email=${cinema.auth.email}&movie_id=${movieData.id}&datetime=${postDatetime}&reservation_number=${reservationNumber}&seats=${movieData.seats}&price=${movieData.total}&tickets=${postTickets}`, {
-			mode: "no-cors"
-		})
+		fetch(`${apiBaseUrl}/reservation/create/?email=${cinema.auth.email}&movie_id=${movieData.id}&datetime=${postDatetime}&reservation_number=${reservationNumber}&seats=${movieData.seats}&price=${movieData.total}&tickets=${postTickets}`)
 			.then(response => response.json())
 			.then(function (data) {
  				cinema.paypalLink = data.payment_link;

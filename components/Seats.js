@@ -6,7 +6,7 @@ const Seats = {
 	template: `
         <div class='seats'>
         <div class='hall-info'>
-        
+
                 <div class="seat">
                     <p>Заето място</p>
                     <input type="radio" disabled />
@@ -75,9 +75,8 @@ const Seats = {
 		const columns = 36;
 		const rows = columns / 9;
 		const maxTickets = cinema.movie?.tickets?.totalNumber;
-		//const occupiedSeats = cinema.movie?.occupiedSeats;
 		cinema.getUnavailableSeats();
-        
+
 		/**
 		 * Select seats while the selected seats are less than the total number of tickets.
 		 *
@@ -115,7 +114,6 @@ const Seats = {
 			handleSubmit,
 			rows,
 			columns,
-			//occupiedSeats,
 			cinema,
 		};
 	},

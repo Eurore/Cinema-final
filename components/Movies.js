@@ -86,7 +86,9 @@ const Movie = {
             />
             <div class='badge' v-if="props.movie.type">{{ props.movie.type }}</div>
             <div class='movie-content'>
-                <h2>{{ props.movie.title }}</h2>
+                <h2>
+					<router-link :to="/movies/ + props.movie.id">{{ props.movie.title }}</router-link>
+				</h2>
                 <p v-if="props.movie.timeStamps">Купи билет</p>
                 <timespan :id='props.movie.id' :timeStamps="props.movie.timeStamps" v-if="props.movie.timeStamps"/>
                 <em v-if="props.movie.info">{{ props.movie?.info }}</em>
@@ -101,7 +103,7 @@ const Movie = {
 	setup(props) {
 		return {
 			props,
-			cinema,
+			cinema
 		};
 	},
 };
