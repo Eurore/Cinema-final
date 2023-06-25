@@ -41,6 +41,9 @@ const Projection = {
 						allowfullscreen
 					>
 					</iframe>
+					<div class="missing-trailer" v-else>
+						<h2>Трейлърът още не е добавен</h2>
+					</div>
 				</div>
 				<div class="projection-info">
 				<div class="image-wrapper movie">
@@ -66,7 +69,7 @@ const Projection = {
 						v-slot="{href, route, navigate}"
 					>
 						<button :href="href" @click="navigate" class='reserve-button'>
-						Reserve
+						Резервация
 						</button>
 					</router-link>
 				</div>
