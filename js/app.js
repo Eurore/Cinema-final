@@ -13,6 +13,7 @@ const cinema = Vue.reactive({
 	activeDate: 0,
 	selectedEventUnavailableSeats: [],
 	paypalLink: null,
+	auth: false,
 
 	/**
 	 *  Get from API all movie events for specific date
@@ -83,12 +84,12 @@ const cinema = Vue.reactive({
 				).getDate()}`,
 			};
 		});
-	},
-	auth: false,
+	}
 });
 
 const app = Vue.createApp({
 	components: {
+		Navigation,
 		Movies,
 		Login,
 		Account,
@@ -104,6 +105,5 @@ const app = Vue.createApp({
 		};
 	},
 });
-
 app.use(router);
 app.mount("#app");

@@ -1,5 +1,6 @@
 .paypal_wrapper {
      margin-top: 2rem;
+     text-align: center;
 }
 .paypal_wrapper > p {
 	max-width: 350px;

@@ -68,9 +68,8 @@ const Projection = {
  				</div>
 			</div>
 
-
 		</div>
-		<div class="actors" v-if="movie.actors.length > 0">
+		<div class="actors" v-if="movie?.actors?.length > 0">
 			<h2>Actors</h2>
 			<Actor :key="actor.actor_id" v-for="actor in movie.actors" :actor="actor"/>
 		</div>

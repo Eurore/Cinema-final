@@ -9,7 +9,6 @@ const routes = [
 	{ path: "/complete", component: Complete },
 	{ path: "/about", component: About },
 	{ path: '/movies/:id', component: Projection },
-
 ];
 
 // 2. Create the router instance and pass the `routes` option
@@ -23,7 +22,7 @@ const router = VueRouter.createRouter({
 
 //4. Add some validations before render specific route.
 router.beforeEach(async (to, from) => {
-	if(!cinema?.auth?.email?.length) await isUserLoggedIn();
+	if (!cinema?.auth?.email?.length) await isUserLoggedIn();
 
 	if (!cinema?.auth?.email?.length) {
 		if (to.fullPath === "/account") return "/login";
@@ -31,11 +30,9 @@ router.beforeEach(async (to, from) => {
 	if (!cinema?.movie?.id) {
 		if (to.fullPath === "/seats" || to.fullPath === "ticket-type") return "/";
 	}
-
 	if (!cinema.movie?.tickets?.totalNumber) {
 		if (to.fullPath === "/seats") return "/ticket-type";
 	}
-
 	if (to.fullPath === "/login") {
 		if (cinema?.auth?.email?.length) return "/account";
 	}

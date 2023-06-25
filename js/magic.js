@@ -1,4 +1,4 @@
-const magic = new Magic("pk_live_68C5E719ADC0192C");
+const magic = new Magic("pk_live_C5DFEF49BAF9CA7E");
 
 /**
  * User login with link from the Magic.
@@ -29,13 +29,21 @@ const authUser = async ({ email }) => {
  * @return  {void}
  */
 const isUserLoggedIn = async () => {
-	const user = await magic.user.getInfo();
-	if (user?.email) {
-		cinema.auth = {
-			...cinema.auth,
-			email: user.email,
-		};
+	try {
+		const user = await magic.user.getInfo();
+		if (user?.email) {
+			cinema.auth = {
+				...cinema.auth,
+				email: user.email,
+			};
+		} else {
+			cinema.auth = {};
+		}
+	} catch (error) {
+		console.log(error)
+		cinema.auth = {};
 	}
+
 };
 
 /**
@@ -45,7 +53,6 @@ const isUserLoggedIn = async () => {
  */
 const logOut = async () => {
 	await magic.user.logout();
-	cinema.auth = false;
-	localStorage.clear();
+	cinema.auth = {};
 	router.replace("/");
 };
