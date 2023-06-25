@@ -75,15 +75,17 @@ const Movie = {
 		Timespan,
 	},
 	template: `
-            <img
-                loading='lazy'
-                class='movie-image'
-                :src='props.movie.image'
-                :alt='props.movie.title'
-                width="150"
-                height="200"
-                v-if='props.movie.image.length'
-            />
+			<router-link :to="/movies/ + props.movie.id">
+				<img
+					loading='lazy'
+					class='movie-image'
+					:src='props.movie.image'
+					:alt='props.movie.title'
+					width="150"
+					height="200"
+					v-if='props.movie.image.length'
+				/>
+			</router-link>
             <div class='badge' v-if="props.movie.type">{{ props.movie.type }}</div>
             <div class='movie-content'>
                 <h2>

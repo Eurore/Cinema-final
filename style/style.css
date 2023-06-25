@@ -715,7 +715,6 @@ main .about iframe {
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
-  max-height: 100vh;
 }
 
 .projection img {
@@ -784,6 +783,9 @@ main .about iframe {
 }
 
 @media (max-width: 989px) {
+  .projection .container {
+    flex-direction: column-reverse;
+  }
   .actors {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
