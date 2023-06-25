@@ -27,6 +27,7 @@ const Complete = {
 					<h3>Места:</h3>
 					<span> {{ movieData.seats.join(', ') }}</span>
 				</div>
+				<h4 class="warning">Важно! Обърнете внимание, че резервацията е валидна до 15 минути преди прожекцията.</h4>
             </div>
 			<div class="paypal_wrapper">
 				<p>

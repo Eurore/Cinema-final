@@ -115,6 +115,13 @@ main {
   padding: 2rem 1rem;
 }
 
+.warning{
+  color: red;
+  margin: 1rem auto auto;
+  font-size: 14px;
+  max-width: 300px;
+}
+
 main h1 {
   text-align: center;
   text-transform: uppercase;
