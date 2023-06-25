@@ -8,7 +8,7 @@ const Tickets = {
 			<p>Дата: <strong>{{ movieData.date }}</strong></p>
 			<p>Час: <strong>{{ movieData.time }}</strong></p>
 		</div>
-		<div class='ticket-types'>		
+		<div class='ticket-types'>
 			<table class="bookingTable">
 			<thead>
 				<tr>
@@ -39,7 +39,7 @@ const Tickets = {
 				{{ movieData.info }}
 			</p>
 			<span>
-			Тотал: <h2>{{ parseFloat(price.total).toFixed(2) }}лв.</h2>
+			Общо: <h2>{{ parseFloat(price.total).toFixed(2) }}лв.</h2>
 			</span>
 		</div>
 		<div class="actions">
@@ -101,7 +101,7 @@ const Tickets = {
 				{ totalNumber: 0, typeOfTicket: [] }
 			);
 
-			saveTicketTypeToLocalStorage(tickets, foundMovieInDB, price.total);
+			saveTicketTypeToStorage(tickets, foundMovieInDB, price.total);
 
 			router.push("/seats");
 		};

@@ -97,7 +97,7 @@ const app = Vue.createApp({
 	},
 	setup() {
 		cinema.getMoviesByDate();
-		getMovieFromLocalStorage();
+		getMovieFromStorage();
 		(async () => {
 			const user = await magic.user.getMetadata();
 			if (user?.email) {

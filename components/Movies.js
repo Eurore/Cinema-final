@@ -29,7 +29,7 @@ const Timespan = {
 		 * @return  {void}
 		 */
 		const selectTime = (time) => {
-			saveMovieToLocalStorage(time, props);
+			saveMovieToStorage(time, props);
 
 			if (!cinema.auth?.email?.includes("@")) {
 				router.push("/login");
@@ -96,7 +96,7 @@ const Movie = {
 					<p v-if="props.movie.reservationNumber">Номер: {{ props.movie.reservationNumber }}</p>
 					<p v-if="props.movie.seats">Места: {{ props.movie.seats.join(', ') }}</p>
 					<p v-if="props.movie.date">Дата: {{ props.movie.date }}ч</p>
-					<p v-if="props.movie.total">Тотал: {{ parseFloat(props.movie.total).toFixed(2) }} лв.</p>
+					<p v-if="props.movie.total">Общо: {{ parseFloat(props.movie.total).toFixed(2) }} лв.</p>
 				</div>
             </div>
     `,

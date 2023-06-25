@@ -7,7 +7,7 @@
  *
  * @return  {void}
  */
-const saveMovieToLocalStorage = (time, props) => {
+const saveMovieToStorage = (time, props) => {
 	cinema.movie = {
 		id: +props.id || null,
 		date: `${cinema.getWeek()[cinema.activeDate].fullDate}, ${time}` || null,
@@ -24,7 +24,7 @@ const saveMovieToLocalStorage = (time, props) => {
  *
  * @return  {void}
  */
-const saveTicketTypeToLocalStorage = (tickets, movie, total) => {
+const saveTicketTypeToStorage = (tickets, movie, total) => {
 	cinema.movie = {
 		...cinema.movie,
 		tickets: tickets,
@@ -42,7 +42,7 @@ const saveTicketTypeToLocalStorage = (tickets, movie, total) => {
  *
  * @return  {void}
  */
-const saveSeatsToLocalStorage = (seats) => {
+const saveSeatsToStorage = (seats) => {
 	cinema.movie = {
 		...cinema.movie,
 		seats: seats,
@@ -56,7 +56,7 @@ const saveSeatsToLocalStorage = (seats) => {
  *
  * @return  {number}
  */
-const storeLastReservationNumberToLocalStorage = (number) => {
+const storeLastReservationNumberToStorage = (number) => {
 	cinema.movie = {
 		...cinema.movie,
 		reservationNumber: number,
@@ -72,7 +72,7 @@ const storeLastReservationNumberToLocalStorage = (number) => {
  *
  * @return  {void}
  */
-const getMovieFromLocalStorage = () => {
+const getMovieFromStorage = () => {
 	const lastSelectedMovie = JSON.parse(localStorage.getItem("last_movie"));
 	cinema.movie = lastSelectedMovie;
 };

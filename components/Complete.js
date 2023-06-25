@@ -8,11 +8,11 @@ const Complete = {
             <h1> Успешна резервация </h1>
 			<h2>Благодарим ви, че резервирахте билет!</h2>
             <div class="qrcode">
-                <h3> Код на резервация</h3> 
+                <h3> Код на резервация</h3>
                 <canvas id="qr"></canvas>
                 {{ cinema.movie.reservationNumber }}
             </div>
-            <strong>Тотал: {{ parseFloat(cinema.movie.total).toFixed(2) }}лв.</strong>
+            <strong>Общо: {{ parseFloat(cinema.movie.total).toFixed(2) }}лв.</strong>
             <div class='info'>
                 <p>Прожекция: <strong>{{ movieData.name }}</strong></p>
                 <p>Дата: <strong>{{ movieData.date }}</strong></p>
@@ -42,12 +42,12 @@ const Complete = {
 					</button>
 				</div>
 			</div>
-        
+
         </div>
 		 `,
 	setup() {
 		const generateUniqueNumber = () => Math.floor(Math.random() * Date.now());
-		!cinema.movie.reservationNumber && storeLastReservationNumberToLocalStorage(generateUniqueNumber());
+		!cinema.movie.reservationNumber && storeLastReservationNumberToStorage(generateUniqueNumber());
 		Vue.onMounted(() => {
 			new QRious({
 				element: document.getElementById("qr"),
@@ -68,11 +68,11 @@ const Complete = {
 			seats: cinema.movie?.seats,
 			total: parseFloat(cinema.movie.total).toFixed(2)
 		};
-		
+
 		const gotoPaypal = () => {
 			window.location.href = cinema.paypalLink;
 		};
-		
+
 		cinema.saveReservationDB(cinema.movie.reservationNumber, movieData);
 
 		return {

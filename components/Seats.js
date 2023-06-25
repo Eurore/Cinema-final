@@ -104,7 +104,7 @@ const Seats = {
 			}
 			if (checkedInputs.length === maxTickets) {
 				const seats = [...checkedInputs].map((input) => input.value);
-				saveSeatsToLocalStorage(seats);
+				saveSeatsToStorage(seats);
 				router.replace("/complete");
 			}
 		};

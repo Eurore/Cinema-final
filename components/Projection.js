@@ -70,7 +70,7 @@ const Projection = {
 
 
 		</div>
-		<div class="actors">
+		<div class="actors" v-if="movie.actors.length > 0">
 			<h2>Actors</h2>
 			<Actor :key="actor.actor_id" v-for="actor in movie.actors" :actor="actor"/>
 		</div>
@@ -84,7 +84,7 @@ const Projection = {
 		const youtubeEmbed = (trailer) => {
 			const url = new URL(trailer);
 			const searchParams = new URLSearchParams(url.search);
-			if(searchParams){
+			if (searchParams) {
 				return `https://www.youtube.com/embed/${searchParams.get('v')}?autoplay=1&mute=1`
 			}
 			return "https://www.youtube.com/embed/"
