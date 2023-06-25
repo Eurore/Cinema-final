@@ -2,7 +2,7 @@ const Tickets = {
 	name: "tickets",
 	template: `
 	<div class='ticket-type' :style="{ backgroundImage: 'url(' + movieData.image + ')' }"  @submit="handleSubmit">
-	<form class='container'>
+	<form class='container' data-aos="fade">
 		<div class='selected-movie'>
 			<p>Прожекция: <strong>{{ movieData.name }}</strong></p>
 			<p>Дата: <strong>{{ movieData.date }}</strong></p>
@@ -105,6 +105,13 @@ const Tickets = {
 
 			router.push("/seats");
 		};
+
+		Vue.onMounted(() => {
+			AOS.init({
+				once: true,
+				offset: 0,
+			})
+		})
 
 		return {
 			qty,

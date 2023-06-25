@@ -75,7 +75,7 @@ const Movie = {
 		Timespan,
 	},
 	template: `
-			<router-link :to="/movies/ + props.movie.id">
+			<router-link :to="/movies/ + props.movie.id" data-aos="fade">
 				<img
 					loading='lazy'
 					class='movie-image'
@@ -86,8 +86,8 @@ const Movie = {
 					v-if='props.movie.image.length'
 				/>
 			</router-link>
-            <div class='badge' v-if="props.movie.type">{{ props.movie.type }}</div>
-            <div class='movie-content'>
+            <div class='badge' v-if="props.movie.type" data-aos="fade">{{ props.movie.type }}</div>
+            <div class='movie-content' data-aos="fade">
                 <h2>
 					<router-link :to="/movies/ + props.movie.id">{{ props.movie.title }}</router-link>
 				</h2>
@@ -103,6 +103,12 @@ const Movie = {
             </div>
     `,
 	setup(props) {
+		Vue.onMounted(() => {
+			AOS.init({
+				once: true,
+				offset: 0,
+			})
+		})
 		return {
 			props,
 			cinema
@@ -134,9 +140,10 @@ const Movies = {
 		 </div>`,
 	setup() {
 		const togglePopular = Vue.ref(false);
-		const movies = Vue.computed(() =>
-			togglePopular.value ? cinema.movies.filter((movie) => movie.popular) : cinema.movies
-		);
+		const movies = Vue.computed(() => {
+			AOS.refresh();
+			return togglePopular.value ? cinema.movies.filter((movie) => movie.popular) : cinema.movies
+		});
 		return { cinema, togglePopular, movies };
 	},
 };

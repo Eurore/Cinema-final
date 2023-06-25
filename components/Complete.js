@@ -4,7 +4,7 @@ const Complete = {
 		Movie,
 	},
 	template: `
-        <div class='complete'>
+        <div class='complete' data-aos="fade">
             <h1> Успешна резервация </h1>
 			<h2>Благодарим ви, че резервирахте билет!</h2>
             <div class="qrcode">
@@ -75,6 +75,13 @@ const Complete = {
 		};
 
 		cinema.saveReservationDB(cinema.movie.reservationNumber, movieData);
+
+		Vue.onMounted(() => {
+			AOS.init({
+				once: true,
+				offset: 0,
+			})
+		})
 
 		return {
 			generateUniqueNumber,

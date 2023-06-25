@@ -4,7 +4,7 @@
 const Seats = {
 	name: "seats",
 	template: `
-        <div class='seats'>
+        <div class='seats' data-aos="fade">
         <div class='hall-info'>
 
                 <div class="seat">
@@ -108,6 +108,13 @@ const Seats = {
 				router.replace("/complete");
 			}
 		};
+
+        Vue.onMounted(() => {
+			AOS.init({
+				once: true,
+				offset: 0,
+			})
+		})
 
 		return {
 			validateSeats,

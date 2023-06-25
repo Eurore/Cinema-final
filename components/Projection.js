@@ -27,19 +27,21 @@ const Projection = {
 		Actor,
 	},
 	template: `
-        <div class='projection'>
+        <div class='projection' data-aos="fade">
 			<div class="container">
-				<iframe
-					v-if="movie.movie_trailer"
-					width="100%"
-					height="100%"
-					:src="youtubeEmbed(movie.movie_trailer)"
-					:title="movie.movie_name"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-					allowfullscreen
-				>
-				</iframe>
+				<div class="iframe-wrapper">
+					<iframe
+						v-if="movie.movie_trailer"
+						width="100%"
+						height="100%"
+						:src="youtubeEmbed(movie.movie_trailer)"
+						:title="movie.movie_name"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen
+					>
+					</iframe>
+				</div>
 				<div class="projection-info">
 				<div class="image-wrapper movie">
 					<div class='badge'>{{ movie.is_3d ? "3D" : "2D" }}</div>
@@ -72,15 +74,13 @@ const Projection = {
 			</div>
 
 		</div>
-		<div class="actors" v-if="movie?.actors?.length > 0">
+		<div class="actors" v-if="movie?.actors?.length > 0" data-aos="fade">
 			<h2>Actors</h2>
 			<Actor :key="actor.actor_id" v-for="actor in movie.actors" :actor="actor"/>
 		</div>
 	`,
 	setup() {
 		const route = VueRouter.useRoute();
-		const playTrailer = Vue.ref(false)
-		const trailer = Vue.ref(null);
 		const movie = Vue.ref({})
 
 		/**
@@ -118,26 +118,16 @@ const Projection = {
 			const res = await fetch(`${apiBaseUrl}/movie/view/?id=${route.params.id}`)
 			const data = await res.json();
 			movie.value = data;
-		});
-
-		Vue.watch(playTrailer, (flag, prevCount) => {
-			if (flag) {
-				setTimeout(() => {
-					trailer.value?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-					document.body.style.overflow = 'hidden'
-				}, 200);
-
-			} else {
-				document.body.style.overflow = ''
-			}
+			AOS.init({
+				once: true,
+				offset: 0,
+			})
 		});
 
 		return {
 			movie,
 			transformDuration,
 			youtubeEmbed,
-			playTrailer,
-			trailer,
 		}
 	},
 };

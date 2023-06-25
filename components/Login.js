@@ -1,7 +1,7 @@
 const Login = {
 	name: "login",
 	template: `
-        <div class='login'>
+        <div class='login' data-aos="fade">
 			<h1>Вход</h1>
 			<form @submit='handleSubmit'>
 				<div class="name-container">

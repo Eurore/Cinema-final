@@ -48,7 +48,7 @@ const cinema = Vue.reactive({
 		fetch(`${apiBaseUrl}/reservation/create/?email=${cinema.auth.email}&movie_id=${movieData.id}&datetime=${postDatetime}&reservation_number=${reservationNumber}&seats=${movieData.seats}&price=${movieData.total}&tickets=${postTickets}`)
 			.then(response => response.json())
 			.then(function (data) {
- 				cinema.paypalLink = data.payment_link;
+				cinema.paypalLink = data.payment_link;
 			}.bind(cinema));
 	},
 
@@ -105,5 +105,6 @@ const app = Vue.createApp({
 		};
 	},
 });
+
 app.use(router);
 app.mount("#app");

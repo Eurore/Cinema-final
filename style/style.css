@@ -719,22 +719,22 @@ main .about iframe {
 
 .projection img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
   max-width: 200px;
+}
+
+.projection .iframe-wrapper{
+  width: 50%;
+  background-color: #050938;
+  display: flex;
 }
 
 .projection iframe {
   width: 100%;
   height: auto;
-  min-width: 50%;
-  transition: min-width 1s ease;
-  will-change: min-width;
   border: none;
-}
-
-.projection iframe.full-width {
-  min-width: 100%;
+  aspect-ratio: 16/9;
 }
 
 .projection .projection-info {
@@ -743,8 +743,7 @@ main .about iframe {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
-  min-width: 50%;
+  width: 50%;
   height: 100%;
   gap: 2rem;
   background-color: #44487c;
@@ -785,6 +784,10 @@ main .about iframe {
 @media (max-width: 989px) {
   .projection .container {
     flex-direction: column-reverse;
+  }
+  .projection .iframe-wrapper,
+  .projection .projection-info{
+    width: 100%;
   }
   .actors {
     grid-template-columns: repeat(2, 1fr);

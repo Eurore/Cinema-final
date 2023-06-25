@@ -21,11 +21,12 @@ const Account = {
 		let allReservedMovies = getReservedMovies() || [];
 		if (allReservedMovies.length) {
 			allReservedMovies = allReservedMovies.map((movie) => {
-				const findMovieInDB = cinema.movies.find((m) => m.id === movie.id);
+				const foundMovieInDB = cinema.movies.find((m) => m.id === movie.id);
 				return {
-					image: findMovieInDB?.image,
-					type: findMovieInDB?.type,
-					title: findMovieInDB?.title,
+					id: foundMovieInDB.id,
+					image: foundMovieInDB?.image,
+					type: foundMovieInDB?.type,
+					title: foundMovieInDB?.title,
 					date: movie?.date,
 					total: movie?.total,
 					reservationNumber: movie?.reservationNumber,
