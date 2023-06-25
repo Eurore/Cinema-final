@@ -10,9 +10,9 @@ const Account = {
                 <button @click="logOut" class="logout">Изход</button>
 		    </div>
 			<div v-if='allReservedMovies.length' class='reservations'>
-			<h2> История </h2>
+			<h2>История</h2>
 				<div :key="movie.id" class='movie' v-for='movie in allReservedMovies'>
-					<movie :movie="movie">
+					<movie :movie="movie" />
 				</div>
 			</div>
         </div>
@@ -33,7 +33,7 @@ const Account = {
 				};
 			});
 		}
-		
+
 		return {
 			logOut,
 			allReservedMovies,

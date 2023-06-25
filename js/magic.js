@@ -1,4 +1,4 @@
-const magic = new Magic("pk_live_68C5E719ADC0192C"); // ✨
+const magic = new Magic("pk_live_68C5E719ADC0192C");
 
 /**
  * User login with link from the Magic.
@@ -9,7 +9,7 @@ const magic = new Magic("pk_live_68C5E719ADC0192C"); // ✨
  */
 const authUser = async ({ email }) => {
 	try {
-		const authToken = await magic.auth.loginWithMagicLink({ email: email });
+		const authToken = await magic.auth.loginWithEmailOTP({ email: email });
 		if (authToken) {
 			cinema.auth = {
 				email: email,
@@ -20,6 +20,21 @@ const authUser = async ({ email }) => {
 		}
 	} catch (errors) {
 		console.log(errors);
+	}
+};
+
+/**
+ * Get and use already logged user.
+ *
+ * @return  {void}
+ */
+const isUserLoggedIn = async () => {
+	const user = await magic.user.getInfo();
+	if (user?.email) {
+		cinema.auth = {
+			...cinema.auth,
+			email: user.email,
+		};
 	}
 };
 

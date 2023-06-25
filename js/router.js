@@ -23,6 +23,7 @@ const router = VueRouter.createRouter({
 
 //4. Add some validations before render specific route.
 router.beforeEach(async (to, from) => {
+	if(!cinema?.auth?.email?.length) await isUserLoggedIn();
 
 	if (!cinema?.auth?.email?.length) {
 		if (to.fullPath === "/account") return "/login";
